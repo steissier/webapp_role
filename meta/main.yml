@@ -1,0 +1,5 @@
+galaxy_info:
+  role_name: webapp installation
+  author: Seb
+  description: Ansible webapp installation
+  company: Bluescale

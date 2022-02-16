@@ -1,0 +1,5 @@
+---
+webserver: "nginx"
+webdirectory: "/usr/share/nginx/html"
+repogit: "https://github.com/steissier/static-website-example.git"
+

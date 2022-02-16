@@ -1,0 +1,2 @@
+webserver: "nginx"
+webdirectory: "/usr/www/html"
