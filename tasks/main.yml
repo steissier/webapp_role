@@ -1,21 +1,22 @@
 ---
 - name: "install nginx & git Ubuntu"
   package:
-    name: ['nginx','git']
+    name: "{{ webserver }}"
     state: present
     update_cache: yes
-  when:
-    webserver ==  "nginx"
+  when: webserver == "nginx" or webserver == "apache2"
 
-- name: "install httpd & git Ubuntu"
-  package:
-    name: ['httpd','git']
-    state: present
-    update_cache: yes
-  when:
-    webserver ==  "httpd"
+- name: "recup fichier nginx"
+  copy:
+    remote_src: yes
+    src: "{{ webdirectory }}"
+    dest: "{{ homedir }}"
+  when: webserver == "nginx" or webserver == "apache2"
 
-- name: "recup repo"
-  git:
-    repo: "{{ repogit }}"
-    dest: "{{ webdirectory }}"
+- name: "lancement des services"
+  service:
+    name: "{{ webserver }}"
+    state: started
+    enabled: yes
+  when: webserver == "nginx" or webserver == "apache2"
+
